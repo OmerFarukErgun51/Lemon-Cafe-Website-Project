@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Lemon Cafe</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <!-- Anasayfa Başlangıç -->
+    <header id="header">
+      <div class="header">
+        <div class="container">
+          <div class="header-navbar">
+            <div class="header-logo">
+              <h2 id="baslık">Lemon Cafe</h2>
+            </div>
+            <div class="header-menu">
+              <ul id="menuItems">
+                <li><a href="#header" style="color: black">Anasayfa</a></li>
+                <li><a href="#about" style="color: black">Hakkımızda</a></li>
+                <li><a href="#portfolio" style="color: black">Bilgi</a></li>
+                <li>
+                  <a href="#Hizmetlerimiz" style="color: black"
+                    >Hizmetlerimiz</a
+                  >
+                </li>
+                <div class="search-engine" id="searchEngine">
+                  <input type="text" />
+                  <i class="bi bi-search" id="searchIcon"></i>
+                </div>
+              </ul>
+              <i class="bi bi-list" id="menu-icon" onclick="menuToggle();"></i>
+            </div>
+          </div>
+          <div class="header-text">
+            <h1 style="color: rgb(255, 166, 0); font-size: 100px">
+              Hosgeldiniz
+            </h1>
+            <h3>Kalitenin Merkezi Lemon Coffe'ye</h3>
+            <a href="/Form.html" class="btn-coffee" target="_blank">Giriş</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Anasayfa Bitiş -->
+
+    <!-- Hakkında Başlangıç -->
+    <section id="about">
+      <div class="about">
+        <div class="container">
+          <div class="about-title">
+            <h2>Hakkımızda</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-img anime-left">
+              <img src="/img/LımonCaffeDukkan.jpg" />
+            </div>
+            <div class="about-text anime-right">
+              <h4>Biz Kimiz</h4>
+              <p>
+                Limon Cafe, lezzetli kahve ve tatlilar sunan yerel bir mekan
+                olarak hizmet vermektedir. Misyonumuz, misafirlerimize en iyi
+                kaliteyi sunarken samimi bir ortam yaratmaktır. Kahve tutkumuz
+                ve lezzetli tatlilarımızla müşterilerimizin beğenisini kazanmayı
+                hedefliyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hakkında Bitiş  -->
+
+    <!-- Bilgi Başlangıç -->
+    <section id="portfolio">
+      <div class="portfolio">
+        <div class="portfolio-item ani1">
+          <img src="/img/latte.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cup-hot-fill"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani2">
+          <img src="/img/chocalate.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cookie"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani3">
+          <img src="/img/cake.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cake2-fill"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani4">
+          <img src="/img/coolies.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cookie"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani5">
+          <img src="/img/dondurma.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cake2-fill"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani6">
+          <img src="/img/kahveÇekirdeği.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cup-hot-fill"></i>
+          </div>
+        </div>
+        <div class="portfolio-item ani7">
+          <img src="/img/sıcakÇikolata.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cup-hot-fill"></i>  
+          </div>
+        </div>
+        <div class="portfolio-item ani8">
+          <img src="/img/pasta.jpg" />
+          <div class="overlay">
+            <i class="bi bi-cake2-fill"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Bilgi Bitiş -->
+
+    <!-- Menü Başlangıç -->
+    <section id="about">
+      <div class="about">
+        <div class="container">
+          <div class="about-title">
+            <h2>Menü</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-img anime-left">
+              <img src="img/Bej ve Siyah Sade Restoran Kafe Menü.jpg" />
+            </div>
+            <div class="about-text anime-right">
+              <h4>Menümüz</h4>
+              <p>
+                Lemon Cafe menüsü, taptaze ve kaliteli malzemelerle hazırlanan
+                çeşitli lezzetleri sunuyor. Hafif ve sağlıklı seçenekler
+                arasında günlük taze salatalar, soğuk içecekler ve smoothie'ler
+                bulunurken, zengin kahve çeşitleri ve tatlılar da damak
+                zevkinize hitap ediyor. Menüde ayrıca kahvaltı seçenekleri,
+                sandviçler ve atıştırmalıklar da yer almakta. Misafirlerimize
+                hem rahat bir atmosferde keyifli vakit geçirme hem de lezzet
+                dolu bir deneyim sunmayı hedefliyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Menü Bitiş -->
+
+    <!-- Hizmetlerimiz Başlangıç -->
+    <section id="Hizmetlerimiz" class="hizmet">
+      <h2 class="h2">Hizmetlerimiz</h2>
+      <p class="p">Neler sunuyoruz</p>
+      <hr />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Kahveler</h3>
+            <p>Farklı Lezzetler</p>
+            <p>
+              Kahve çeşitlerimiz arasında espresso, latte, americano ve daha
+              birçok seçenek bulunmaktadır. Uzman baristalarımız, en taze kahve
+              çekirdekleri ile hazırladıkları içecekleri özenle sunmaktadır.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3>Tatlılar</h3>
+            <p>Tatlı Molası</p>
+            <p>
+              Tatlı menümüzde cheesecake, tiramisu, kurabiye ve daha birçok
+              lezzetli seçenek bulunmaktadır. El yapımı tatlilarımız, özel
+              tarifler ve taze malzemeler ile hazırlanmaktadır.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3>Aperatifler</h3>
+            <p>Hafif Atıştırmalıklar</p>
+            <p>
+              Aperatif menümüzde sandviçler, atıştırmalıklar ve sağlıklı
+              alternatifler bulunmaktadır. Lezzetli ve hafif seçeneklerimiz,
+              kahve keyfinizi tamamlamak için idealdir.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+    </section>
+    <!-- Hizmetlerimiz Bitiş -->
+    <!-- İletişim başlangıç -->
+    <section id="contact">
+      <div class="contact">
+          <div class="about-title">
+            <h2>İletişim</h2>
+          </div>
+          <div class="row">
+            <div class="col-md-4" >
+          <div class="contact-content">
+            <div class="contact-item anime-top">
+              <i class="bi bi-telephone-inbound-fill"></i>
+              <p>0212 234 56 78</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-content">
+            <div class="contact-item anime-bottom">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p>Büyükdere Caddesi No. 263, Sarıyer, İstanbul, Türkiye 34398</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-content">
+            <div class="contact-item anime-top">
+              <i class="bi bi-envelope-arrow-down-fill"></i>
+              <p>LemonCafe@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- İletişim Bitiş -->
+
+    <script>
+      window.sr=ScrollReveal();
+      sr.reveal('.anime-left',{
+        origin:'left',
+        duration:1000,
+        distance:'25rem',
+        delay:300
+      })
+      sr.reveal('.anime-right',{
+        origin:'right',
+        duration:1000,
+        distance:'25rem',
+        delay:600
+      })
+      sr.reveal('.anime-top',{
+        origin:'top',
+        duration:1000,
+        distance:'25rem',
+        delay:300
+      })
+      sr.reveal('.anime-bottom',{
+        origin:'bottom',
+        duration:1000,
+        distance:'25rem',
+        delay:600
+      })
+
+    </script>
+
+    <script>
+      ScrollReveal().reveal('.ani1',{delay:250});
+      ScrollReveal().reveal('.ani2',{delay:500});
+      ScrollReveal().reveal('.ani3',{delay:750});
+      ScrollReveal().reveal('.ani4',{delay:1000});
+      ScrollReveal().reveal('.ani5',{delay:1250});
+      ScrollReveal().reveal('.ani6',{delay:1500});
+      ScrollReveal().reveal('.ani7',{delay:1750});
+      ScrollReveal().reveal('.ani8',{delay:2000});
+    </script>
+    
+     <script>
+      var menuItems=document.getElementById('menuItems');
+      menuItems.style.maxHeight="0px";
+
+      function menuToggle(){
+        if(menuItems.style.maxHeight=="0px"){
+          menuItems.style.maxHeight="200px";
+        }else{
+          menuItems.style.maxHeight="0px";
+        }
+      }
+     </script>
+    
+    <script src="/css/search.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
