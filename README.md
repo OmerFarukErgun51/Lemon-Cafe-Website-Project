@@ -13,6 +13,7 @@ Welcome to the **Lemon Cafe** website! This is a modern, visually rich, and full
 ## 🎨 Tech Stack
 
 The project is built using:
+
 - **HTML5**: Structured semantic web pages.
 - **CSS3 (Custom Styling)**: Premium themes, custom fonts, glassmorphism, hover overlay animations, responsive layouts, and responsive media queries.
 - **Bootstrap v5.3**: Grid system, layout columns, responsive components, and utility classes.
@@ -29,7 +30,7 @@ The project is built using:
    - Integrated search bar with a toggle expand/collapse effect.
 2. **Hero/Welcome Section**:
    - Eye-catching full-viewport hero banner showing the cozy storefront.
-   - Distinct custom typography using the *Herr Von Muellerhoff* script font.
+   - Distinct custom typography using the _Herr Von Muellerhoff_ script font.
    - "Register/Log In" Call-to-Action button with a sliding hover transition that redirects to `Form.html`.
 3. **About Us ("Hakkımızda")**:
    - Introduction to Lemon Cafe's history and mission.
@@ -67,7 +68,8 @@ LemonCafeProje/
 ## 🛠️ How to Run Locally
 
 Since this is a client-side static web application, running it is simple:
+
 1. Clone or download this project directory.
 2. Navigate to the root directory.
 3. Open `Anasayfa.html` in any modern web browser (Google Chrome, Firefox, Safari, Microsoft Edge).
-4. Click the **Giriş** (Register) button to view and test the Registration form (`Form.html`).
+4. Click the **Giriş** (Register) button to view and test the Registration form (`Form.html`)...
