@@ -33,6 +33,8 @@
                  <li><a href="#menu">Menü</a></li>
                  <li><a href="#portfolio">Galeri</a></li>
                  <li><a href="#Hizmetlerimiz">Hizmetlerimiz</a></li>
+                 <li id="adminLink" style="display: none;"><a href="Admin.html" class="text-danger fw-bold">Admin Paneli</a></li>
+                 <li id="authLink"><a href="Giris.html" id="authBtn">Giriş Yap</a></li>
                  <div class="search-engine" id="searchEngine">
                    <input type="text" placeholder="Ara..." />
                    <i class="bi bi-search" id="searchIcon"></i>
@@ -46,7 +48,7 @@
               Hosgeldiniz
             </h1>
             <h3>Kalitenin Merkezi Lemon Coffe'ye</h3>
-            <a href="/Form.html" class="btn-coffee" target="_blank">Giriş</a>
+            <a href="Giris.html" class="btn-coffee" id="heroLoginBtn">Giriş</a>
           </div>
         </div>
       </div>
@@ -325,6 +327,141 @@
         if (section.id) {
           observer.observe(section);
         }
+      });
+    </script>
+
+    <!-- Sipariş Modal Başlangıç -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+          <div class="modal-header" style="background-color: #5b2a02; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <h5 class="modal-title fw-bold" id="orderModalLabel">Sipariş Oluştur</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="text-center mb-4">
+              <img id="orderItemImg" src="" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.15);" />
+              <h4 id="orderItemName" class="fw-bold mt-3 text-dark">Ürün Adı</h4>
+            </div>
+            <div id="orderAlertContainer"></div>
+            <form id="orderForm">
+              <div class="mb-3">
+                <label for="orderQuantity" class="form-label fw-semibold">Adet Seçin</label>
+                <input type="number" class="form-control" id="orderQuantity" min="1" max="20" value="1" required />
+              </div>
+              <button type="submit" class="btn w-100 fw-bold" style="background-color: rgb(255, 166, 0); color: white;">Siparişi Tamamla</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sipariş Modal Bitiş -->
+
+    <script>
+      // Authentication and Session State Manager Algorithm
+      document.addEventListener('DOMContentLoaded', () => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const authBtn = document.getElementById('authBtn');
+        const adminLink = document.getElementById('adminLink');
+        const heroLoginBtn = document.getElementById('heroLoginBtn');
+
+        if (currentUser) {
+          // Logged in behavior
+          authBtn.innerText = `Çıkış Yap (${currentUser.firstName})`;
+          authBtn.href = '#';
+          authBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+          });
+
+          if (heroLoginBtn) {
+            heroLoginBtn.innerText = 'Çıkış Yap';
+            heroLoginBtn.href = '#';
+            heroLoginBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              localStorage.removeItem('currentUser');
+              window.location.reload();
+            });
+          }
+
+          if (currentUser.role === 'admin') {
+            adminLink.style.display = 'block';
+          }
+        } else {
+          // Logged out behavior
+          authBtn.innerText = 'Giriş Yap';
+          authBtn.href = 'Giris.html';
+          if (heroLoginBtn) {
+            heroLoginBtn.innerText = 'Giriş';
+            heroLoginBtn.href = 'Giris.html';
+          }
+        }
+      });
+
+      // Interactive Ordering System Algorithm
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      portfolioItems.forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          const imgSrc = img.getAttribute('src');
+          const dataName = item.getAttribute('data-name');
+          const itemName = dataName.split(' ')[0].toUpperCase(); 
+
+          document.getElementById('orderItemImg').src = imgSrc;
+          document.getElementById('orderItemName').innerText = itemName;
+          document.getElementById('orderQuantity').value = 1;
+          document.getElementById('orderAlertContainer').innerHTML = '';
+
+          const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
+          orderModal.show();
+        });
+      });
+
+      document.getElementById('orderForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const orderAlertContainer = document.getElementById('orderAlertContainer');
+
+        if (!currentUser) {
+          orderAlertContainer.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+              Sipariş verebilmek için lütfen önce <a href="Giris.html" class="alert-link">giriş yapın</a>.
+            </div>
+          `;
+          return;
+        }
+
+        const itemName = document.getElementById('orderItemName').innerText;
+        const quantity = parseInt(document.getElementById('orderQuantity').value);
+
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const newOrder = {
+          userEmail: currentUser.email,
+          itemName: itemName,
+          quantity: quantity,
+          date: new Date().toISOString(),
+          status: 'Beklemede'
+        };
+
+        orders.push(newOrder);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        orderAlertContainer.innerHTML = `
+          <div class="alert alert-success" role="alert">
+            Siparişiniz başarıyla alındı!
+          </div>
+        `;
+
+        setTimeout(() => {
+          const modalEl = document.getElementById('orderModal');
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (modalInstance) {
+            modalInstance.hide();
+          }
+        }, 1500);
       });
     </script>
     

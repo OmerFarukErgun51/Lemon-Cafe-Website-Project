@@ -113,6 +113,9 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+          <div class="text-center mt-3">
+            <span class="small text-muted">Zaten hesabınız var mı? <a href="Giris.html" class="text-decoration-none fw-bold">Giriş Yap</a></span>
+          </div>
         </form>
       </div>
     </div>
@@ -136,16 +139,38 @@
           showAlert('Şifre en az 6 karakter olmalıdır!', 'danger');
           return;
         }
+
+        // Retrieve existing users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Prevent duplicate emails
+        const emailExists = users.some(user => user.email.toLowerCase() === email.toLowerCase());
+        if (emailExists) {
+          showAlert('Bu e-posta adresiyle zaten kayıtlı bir hesap var!', 'danger');
+          return;
+        }
+
+        // Save new user data
+        const newUser = {
+          firstName,
+          lastName,
+          email,
+          password,
+          gender,
+          role: 'user'
+        };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
         
         // Success flow
-        showAlert(`Kayıt Başarılı! Hoş geldiniz, ${firstName} ${lastName}. Ana sayfaya yönlendiriliyorsunuz...`, 'success');
+        showAlert(`Kayıt Başarılı! Giriş yapma sayfasına yönlendiriliyorsunuz...`, 'success');
         
         // Disable button & redirect after delay
         const submitBtn = e.target.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
         
         setTimeout(() => {
-          window.location.href = 'Anasayfa.html';
+          window.location.href = 'Giris.html';
         }, 2000);
       });
 

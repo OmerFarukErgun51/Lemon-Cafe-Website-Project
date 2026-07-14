@@ -73,6 +73,17 @@ ul{
 li{
     margin-left: 27px;
 }
+.header-menu ul li a {
+    color: black;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
+}
+.header-menu ul li a:hover,
+.header-menu ul li a.active {
+    color: rgb(255, 166, 0) !important;
+    border-bottom: 2px solid rgb(255, 166, 0);
+}
 .search-engine{
     margin-left: 50px;
     height: 100%;

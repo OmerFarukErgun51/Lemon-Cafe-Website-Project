@@ -1,52 +1,48 @@
 # 🍋 Lemon Cafe
 
-Welcome to the **Lemon Cafe** website! This is a modern, visually rich, and fully responsive landing page designed for a local cozy cafe, featuring delightful coffee, exquisite desserts, and smooth animations.
+Welcome to the **Lemon Cafe** website! This is a modern, interactive, and fully responsive landing page designed for a local cozy cafe, featuring delightful coffee, exquisite desserts, user authentication, a mock ordering system, and an admin dashboard.
 
 ---
 
 ## 🚀 Overview
 
-**Lemon Cafe** is a web-based landing page built with modern frontend technologies to provide a premium user experience. Visitors can explore the cafe's story, view interactive menu items, read about the services offered, and easily find contact details. A built-in registration form allows customers to sign up and join the Lemon Cafe community.
+**Lemon Cafe** is a web-based client-side application built with modern frontend technologies to provide a premium user experience. Visitors can explore the cafe's story, search and filter menu items, place mock orders, sign up, and sign in. A dedicated Admin Panel is provided to monitor users and manage active orders in real-time using browser local storage.
 
 ---
 
 ## 🎨 Tech Stack
 
 The project is built using:
-
 - **HTML5**: Structured semantic web pages.
-- **CSS3 (Custom Styling)**: Premium themes, custom fonts, glassmorphism, hover overlay animations, responsive layouts, and responsive media queries.
-- **Bootstrap v5.3**: Grid system, layout columns, responsive components, and utility classes.
-- **Bootstrap Icons**: Lightweight icons for navigation and features.
-- **ScrollReveal JS**: Subtle micro-animations triggered on scroll (fade-in, left/right/top/bottom slide-ins) for a premium interactive feel.
+- **CSS3 (Custom Styling)**: Premium themes, custom fonts, glassmorphism, hover overlay animations, responsive layouts, active states, and media queries.
+- **Bootstrap v5.3 / v5.0**: Grid systems, layout columns, responsive components, forms, modals, alerts, and utility classes.
+- **Bootstrap Icons**: Lightweight vector icons for interface elements.
+- **ScrollReveal JS**: Subtle micro-animations triggered on scroll for a premium interactive feel.
+- **Local Storage API**: Client-side storage for maintaining state, user profiles, session info, and orders.
 
 ---
 
 ## ✨ Features
 
 1. **Responsive Header & Navigation**:
-   - Dynamic top navbar featuring links to sections (Home, About Us, Info, Services).
+   - Dynamic navbar featuring links to sections (Home, About Us, Menu, Gallery, Services).
    - Collapsible navigation menu for mobile screens (hamburger icon toggle).
-   - Integrated search bar with a toggle expand/collapse effect.
-2. **Hero/Welcome Section**:
-   - Eye-catching full-viewport hero banner showing the cozy storefront.
-   - Distinct custom typography using the _Herr Von Muellerhoff_ script font.
-   - "Register/Log In" Call-to-Action button with a sliding hover transition that redirects to `Form.html`.
-3. **About Us ("Hakkımızda")**:
-   - Introduction to Lemon Cafe's history and mission.
-   - Entrance scroll animation.
-4. **Interactive Showcase Gallery ("Bilgi")**:
-   - Interactive grid showcasing cafe delights (latte, chocolates, cakes, cookies, ice cream, etc.).
-   - Hover zoom effects combined with a dark amber semi-transparent overlay displaying relevant icons.
-5. **Menu Section ("Menü")**:
-   - Showcase of the cafe menu with descriptions of fresh ingredients, light breakfast bites, and specialty beverages.
-6. **Services Section ("Hizmetlerimiz")**:
-   - 3-column layout highlighting Coffees, Desserts, and Appetizers.
-7. **Contact Information ("İletişim")**:
-   - Contact details including address (Büyükdere Caddesi, Sarıyer, İstanbul), email, and phone number with clean vector icons.
-8. **Registration Form (`Form.html`)**:
-   - Semi-transparent, centered container form on top of a blurred storefront background.
-   - Clean fields for: First Name, Last Name, Email, Password, and Gender selection.
+   - Integrated real-time search bar with a toggle expand/collapse effect.
+2. **User Authentication & Session Management**:
+   - **Sign Up (`Form.html`)**: Validates input data (e.g. password strength) and saves credentials to `localStorage`. Prevents email duplicates.
+   - **Login (`Giris.html`)**: Authenticates users against saved credentials and logs in the Admin using fixed manager credentials.
+   - **Navbar Session States**: Navbar dynamically toggles between "Giriş Yap" and "Çıkış Yap (Name)" depending on the user session. It displays a red "Admin Paneli" link if the logged-in user is the Admin.
+3. **Interactive Mock Ordering System**:
+   - Clicking on any image card in the **Galeri** (Gallery) section opens a Bootstrap modal.
+   - If logged out, it prompts the user to log in first.
+   - If logged in, users can select quantities and place mock orders, storing them in `localStorage.orders`.
+4. **Real-time Search Filter**:
+   - Real-time search in the Gallery using a JavaScript substring matching filter on items' metadata tags.
+5. **Admin Dashboard (`Admin.html`)**:
+   - Displays real-time metrics (Total Users, Total Orders, Pending, Completed).
+   - **User Management**: Lists registered users and allows the Admin to delete user profiles.
+   - **Order Management**: Lists all placed orders with user email, timestamps, quantities, and status badges. Provides status transitions (e.g., *Hazırla* (Prepare) -> *Tamamla* (Complete)) and cancellation controls.
+   - **Dashboard Access Guard**: Restricts access to Admin page to authorized personnel only.
 
 ---
 
@@ -55,21 +51,27 @@ The project is built using:
 ```text
 LemonCafeProje/
 ├── css/
-│   ├── style.css      # Core styles, media queries, and responsive layout
-│   └── search.js      # JavaScript logic for search bar toggle animation
-├── img/               # Visual assets (cafe pictures, coffee, desserts, menu)
-├── Anasayfa.html      # Main Landing Page
-├── Form.html          # Registration/Sign-up Page
-└── README.md          # Project Overview and Quick Start
+│   ├── style.css       # Core styles, transitions, active states, and responsive styling
+│   └── search.js       # Real-time search filter and search bar toggle animation
+├── img/                # Visual assets (store front, coffee, desserts, menu)
+├── Anasayfa.html       # Main Landing Page with ScrollReveal and Ordering Modal
+├── Form.html           # Registration Page (Saves to localStorage, redirects to login)
+├── Giris.html          # Login Page (Supports User & Admin login, manages sessions)
+├── Admin.html          # Admin Dashboard (Lists users and tracks orders)
+└── README.md           # Project Overview and Quick Start
 ```
 
 ---
 
 ## 🛠️ How to Run Locally
 
-Since this is a client-side static web application, running it is simple:
-
+Since this is a client-side web application, running it is simple:
 1. Clone or download this project directory.
 2. Navigate to the root directory.
-3. Open `Anasayfa.html` in any modern web browser (Google Chrome, Firefox, Safari, Microsoft Edge).
-4. Click the **Giriş** (Register) button to view and test the Registration form (`Form.html`)...
+3. Open `Anasayfa.html` in any modern web browser.
+4. Test the flows:
+   - **User flow**: Click "Giriş" -> click "Kayıt Ol" -> fill form -> register (redirects to Login) -> log in -> select coffee in gallery -> select quantity -> click "Siparişi Tamamla".
+   - **Admin flow**: Log in with:
+     - **Email**: `admin@lemoncafe.com`
+     - **Password**: `admin123`
+     - Click Admin Panel in navbar to view dashboard statistics, users, and manage order statuses.

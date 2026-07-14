@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lemon Cafe - Giriş Yap</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Arka plan resmi ve boyutu */
+      .background-image {
+        background-image: url('/img/LımonCaffeDukkan.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Form kutusunu ortalamak için */
+      .form-container {
+        background-color: rgba(255, 255, 255, 0.85); /* Yarı saydam arka plan */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        max-width: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-image">
+      <div class="form-container">
+        <h2 class="text-center mb-4">Giriş Yap</h2>
+        <div id="alertContainer"></div>
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Email adresinizi girin"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Şifre</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Şifrenizi girin"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-2">Giriş Yap</button>
+          <div class="text-center mt-3">
+            <span class="small text-muted">Hesabınız yok mu? <a href="Form.html" class="text-decoration-none fw-bold">Kayıt Ol</a></span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const alertContainer = document.getElementById('alertContainer');
+        
+        alertContainer.innerHTML = ''; // Clear previous alerts
+        
+        // 1. Check Admin Credentials
+        if (email.toLowerCase() === 'admin@lemoncafe.com' && password === 'admin123') {
+          const adminUser = {
+            firstName: 'Admin',
+            lastName: 'Panel',
+            email: 'admin@lemoncafe.com',
+            role: 'admin'
+          };
+          localStorage.setItem('currentUser', JSON.stringify(adminUser));
+          showAlert('Yönetici girişi başarılı! Paneline yönlendiriliyorsunuz...', 'success');
+          
+          disableForm(e.target);
+          setTimeout(() => {
+            window.location.href = 'Admin.html';
+          }, 1500);
+          return;
+        }
+        
+        // 2. Check registered users in localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const foundUser = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+        
+        if (!foundUser) {
+          showAlert('Bu e-posta adresiyle kayıtlı bir hesap bulunamadı!', 'danger');
+          return;
+        }
+        
+        if (foundUser.password !== password) {
+          showAlert('Şifre hatalı! Lütfen tekrar deneyin.', 'danger');
+          return;
+        }
+        
+        // User login successful
+        localStorage.setItem('currentUser', JSON.stringify(foundUser));
+        showAlert(`Giriş Başarılı! Hoş geldiniz, ${foundUser.firstName} ${foundUser.lastName}.`, 'success');
+        
+        disableForm(e.target);
+        setTimeout(() => {
+          window.location.href = 'Anasayfa.html';
+        }, 1500);
+      });
+
+      function showAlert(message, type) {
+        const alertContainer = document.getElementById('alertContainer');
+        alertContainer.innerHTML = `
+          <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+      }
+
+      function disableForm(form) {
+        const inputs = form.querySelectorAll('input, button');
+        inputs.forEach(el => el.disabled = true);
+      }
+    </script>
+  </body>
+</html>
